@@ -15,7 +15,7 @@ const Offers = () => {
 	const fetchType = async () => {
 		setIsLoading(true);
 		const listings = await fetch(
-			`http://localhost:1337/api/listings?filters[discount][$gte]=1&pagination[page]=${Number(
+			`/api/listings?filters[discount][$gte]=1&pagination[page]=${Number(
 				pageIndex
 			)}&pagination[pageSize]=${page}`
 		);

@@ -1,7 +1,7 @@
 {
 	"name": "house-market-mern",
 	"version": "0.1.0",
-	"proxy": "http://localhost:1337",
+	"proxy": "https://house-market-bk.herokuapp.com",
 	"private": true,
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.2",

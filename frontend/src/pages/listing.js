@@ -14,7 +14,7 @@ const Listing = () => {
 		setIsLoading(true);
 		const fetchListing = async () => {
 			const response = await fetch(
-				`http://localhost:1337/api/listings/${listingId}?pagination[page]=1&pagination[perPage]=3`
+				`/api/listings/${listingId}?pagination[page]=1&pagination[perPage]=3`
 			);
 			const { data } = await response.json();
 			setIsLoading(false);
@@ -46,7 +46,10 @@ const Listing = () => {
 					<div className='flex w-full md:h-[40vh] flex-col md:flex-row items-center justify-between '>
 						<div className=' md:h-full  h-3/2 md:w-1/2'>
 							<img
-								src='https://cdn.pixabay.com/photo/2022/01/29/17/12/chateau-6978102__340.jpg'
+								src={
+									listing.fotos ||
+									'https://cdn.pixabay.com/photo/2022/01/29/17/12/chateau-6978102__340.jpg'
+								}
 								alt=''
 								className=' w-full h-full shadow-md object-cover'
 							/>

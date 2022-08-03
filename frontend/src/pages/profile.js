@@ -5,7 +5,7 @@ import { AuthContext } from '../utils/authContext';
 
 const Profile = () => {
 	const [edit, setEdit] = useState(false);
-	const [username, setUsername] = useState('');
+	const [name, setUsername] = useState('');
 	const { state } = useContext(AuthContext);
 	const { user } = state;
 
@@ -16,9 +16,9 @@ const Profile = () => {
 	}, [user]);
 
 	const handleEdit = async () => {
-		const data = await fetch(
+		await fetch(
 			'/api/users/edit',
-			{ username },
+			{ name },
 			{
 				method: 'PUT',
 				headers: {
@@ -27,8 +27,6 @@ const Profile = () => {
 				},
 			}
 		);
-		const json = await data.json();
-		console.log(json);
 	};
 	return (
 		<div className='container mx-auto w-full px-6 bg-inherit py-14 '>
@@ -46,7 +44,7 @@ const Profile = () => {
 					<input
 						type='text'
 						disabled={!edit}
-						value={username || user.user.username}
+						value={name || user.user.username}
 						onChange={(e) => setUsername(e.target.value)}
 						className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 						id='username'
