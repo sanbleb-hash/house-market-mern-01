@@ -15,6 +15,14 @@ const Profile = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
+	const fetchMyListings = async () => {
+		const response = await fetch(
+			`${process.env.REACT_APP_STRAPI_URL}/api/listings/mylistings/${user.id}`
+		);
+		const data = await response.json();
+		console.log(data);
+	};
+
 	const handleEdit = async () => {
 		await fetch(
 			`${process.env.REACT_APP_STRAPI_URL}/api/users/edit`,
@@ -91,7 +99,7 @@ const Profile = () => {
 				</button>
 				<button
 					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full'
-					onClick={() => setEdit(true)}
+					onClick={fetchMyListings}
 				>
 					my listings
 				</button>
