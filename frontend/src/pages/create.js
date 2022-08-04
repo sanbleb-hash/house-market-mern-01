@@ -135,68 +135,103 @@ const Create = () => {
 					className='flex  pt-20 items-start flex-col min-h-[50vh] gap-5'
 				>
 					<div className='flex items-center justify-between flex-col lg:flex-row gap-5'>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>
+								title of your property
+							</label>
+							<input
+								type='text'
+								className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='name'
+								value={name}
+								placeholder='name'
+							/>
+						</div>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>address</label>
+
+							<input
+								type='text'
+								className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='address'
+								value={address}
+								placeholder='address'
+							/>
+						</div>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>
+								number of bedrooms
+							</label>
+
+							<input
+								type='number'
+								className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								value={bedrooms}
+								name='bedrooms'
+								placeholder='bedrooms'
+							/>
+						</div>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>
+								number of bathrooms
+							</label>
+							<input
+								type='number'
+								className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='bathrooms'
+								value={bathrooms}
+								placeholder='bathrooms'
+							/>
+						</div>
+					</div>
+					<div className='flex items-start flex-col lg:flex-row gap-5'>
+						<label className='text-gray-400 text-sm pb-2 '>
+							choose pictures
+						</label>
+
 						<input
-							type='text'
+							type='file'
 							className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='name'
-							value={name}
-							placeholder='name'
-						/>
-						<input
-							type='text'
-							className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='address'
-							value={address}
-							placeholder='address'
-						/>
-						<input
-							type='number'
-							className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							value={bedrooms}
-							name='bedrooms'
-							placeholder='bedrooms'
-						/>
-						<input
-							type='number'
-							className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='bathrooms'
-							value={bathrooms}
-							placeholder='bathrooms'
+							onChange={(e) =>
+								setFormData({ ...formData, fotos: e.target.fotos })
+							}
+							value={fotos}
+							name='fotos'
+							placeholder='fotos'
 						/>
 					</div>
-					<input
-						type='file'
-						className='shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-						onChange={(e) =>
-							setFormData({ ...formData, fotos: e.target.fotos })
-						}
-						value={fotos}
-						name='fotos'
-						placeholder='fotos'
-					/>
 					<div className='flex items-center justify-between flex-col lg:flex-row gap-5'>
-						<input
-							type='number'
-							className='shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='price'
-							value={price}
-							placeholder='price'
-						/>
-						<input
-							type='number'
-							className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='discount'
-							value={discount}
-							placeholder='discount price'
-						/>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>price</label>
+
+							<input
+								type='number'
+								className='shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='price'
+								value={price}
+								placeholder='price'
+							/>
+						</div>
+						<div className='flex items-start flex-col'>
+							<label className='text-gray-400 text-sm pb-2 '>
+								discount amount
+							</label>
+							<input
+								type='number'
+								className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='discount'
+								value={discount}
+								placeholder='discount price'
+							/>
+						</div>
 						<select
-							className='shadow appearance-none border rounded w-[200px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							className='shadow appearance-none border rounded w-[200px] mt-6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 							onChange={handleChange}
 							name='type'
 							value={type}
@@ -205,7 +240,7 @@ const Create = () => {
 							<option>rent</option>
 						</select>
 						<select
-							className='shadow appearance-none border rounded w-[200px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							className='shadow mt-6 appearance-none border rounded w-[200px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 							onChange={handleChange}
 							name='parking'
 							value={parking}
@@ -216,14 +251,18 @@ const Create = () => {
 						</select>
 					</div>
 					<div className='flex w-full items-end justify-between '>
-						<textarea
-							className='shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-							onChange={handleChange}
-							name='description'
-							value={description}
-							placeholder='description'
-							rows={4}
-						/>
+						<div className='flex items-start flex-col w-full gap-3'>
+							<label className='text-gray-400 text-sm '>description</label>
+
+							<textarea
+								className='shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+								onChange={handleChange}
+								name='description'
+								value={description}
+								placeholder='description'
+								rows={4}
+							/>
+						</div>
 						{formData && (
 							<button
 								className='bg-green-300 px-5 rounded-lg ml-7 py-2 text-gray-400'
