@@ -15,7 +15,9 @@ const Offers = () => {
 	const fetchType = async () => {
 		setIsLoading(true);
 		const listings = await fetch(
-			`/api/listings?filters[discount][$gte]=1&pagination[page]=${Number(
+			`${
+				process.env.REACT_APP_STRAPI_URL
+			}/api/listings?filters[discount][$gte]=1&pagination[page]=${Number(
 				pageIndex
 			)}&pagination[pageSize]=${page}`
 		);

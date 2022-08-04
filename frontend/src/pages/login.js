@@ -40,7 +40,7 @@ const Login = () => {
 				if (!isLogin) {
 					dispatch({ type: 'INITIAL_LOAD' });
 					const { data } = await axios.post(
-						process.env.REACT_APP_STRAPI_URL + 'register',
+						process.env.REACT_APP_STRAPI_URL + '/api/auth/local/register',
 
 						{
 							username,
@@ -62,10 +62,13 @@ const Login = () => {
 					return;
 				} else {
 					dispatch({ type: 'INITIAL_LOAD' });
-					const { data } = await axios.post(process.env.REACT_APP_STRAPI_URL, {
-						identifier: email,
-						password,
-					});
+					const { data } = await axios.post(
+						process.env.REACT_APP_STRAPI_URL + '/api/auth/local',
+						{
+							identifier: email,
+							password,
+						}
+					);
 					dispatch({ type: 'LOGIN_USER', payload: data });
 
 					localStorage.setItem('user', JSON.stringify(data));

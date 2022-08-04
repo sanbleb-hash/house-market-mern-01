@@ -17,7 +17,7 @@ const Profile = () => {
 
 	const handleEdit = async () => {
 		await fetch(
-			'/api/users/edit',
+			`${process.env.REACT_APP_STRAPI_URL}/api/users/edit`,
 			{ name },
 			{
 				method: 'PUT',

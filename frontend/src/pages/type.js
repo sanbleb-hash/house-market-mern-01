@@ -18,7 +18,9 @@ const Type = () => {
 		setIsLoading(true);
 
 		const listings = await fetch(
-			`/api/listings?filters[type][$eq]=${typeId}&pagination[page]=${Number(
+			`${
+				process.env.REACT_APP_STRAPI_URL
+			}/api/listings?filters[type][$eq]=${typeId}&pagination[page]=${Number(
 				pageIndex
 			)}&pagination[pageSize]=${page}`
 		);

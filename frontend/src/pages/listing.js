@@ -14,7 +14,7 @@ const Listing = () => {
 		setIsLoading(true);
 		const fetchListing = async () => {
 			const response = await fetch(
-				`/api/listings/${listingId}?pagination[page]=1&pagination[perPage]=3`
+				`${process.env.REACT_APP_STRAPI_URL}/api/listings/${listingId}?pagination[page]=1&pagination[perPage]=3`
 			);
 			const { data } = await response.json();
 			setIsLoading(false);

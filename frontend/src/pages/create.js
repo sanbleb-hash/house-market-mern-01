@@ -31,12 +31,15 @@ const Create = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let location;
+		setIsLoading(true);
 		const res = await fetch(
 			`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_MAP_TOKEN}`
 		);
+		setIsLoading(false);
 		const dataAddress = await res.json();
-
-		console.log(dataAddress);
+		if (dataAddress.status === 'OK') {
+			location = dataAddress.results[0].geometry.location;
+		}
 
 		// if (dataAddress.results.length > 0) {
 		// 	location = dataAddress.results[0].geometry.location;
@@ -55,7 +58,7 @@ const Create = () => {
 		const token = user.jwt;
 		setIsLoading(true);
 		const data = await fetch(
-			'/api/listings',
+			`${process.env.REACT_APP_STRAPI_URL}/api/listings`,
 
 			{
 				method: 'POST',
@@ -68,7 +71,7 @@ const Create = () => {
 			}
 		);
 		const response = await data.json();
-		console.log(response);
+		setIsLoading(false);
 		if (!response.status === 201 || response.status === 200) {
 			toast.error(response.error);
 			return;

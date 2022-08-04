@@ -2,21 +2,29 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { RiLoader5Line } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
-import Pagination from '../components/pagination';
 import { searchContext } from '../utils/searchContext';
 
 const Search = () => {
 	const { state } = useContext(searchContext);
-	const { isLoading, listings, error } = state;
+	const { isLoading } = state;
 
 	const page = 6;
-	const [pageIndex, setPageIndex] = useState(1);
+	const [pageIndex] = useState(1);
+	const [listings, setListings] = useState([]);
 
 	const navigate = useNavigate();
+	const getSearhListings = async () => {
+		const res = await fetch(
+			`${process.env.REACT_APP_STRAPI_URL}/api/listings?page=${pageIndex}&pageSize=${page}`
+		);
+		const data = await res.json();
+		setListings(data.listings);
+	};
 
 	useEffect(() => {
-		console.log(listings);
-	}, [listings]);
+		getSearhListings();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>
